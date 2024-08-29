@@ -4,6 +4,7 @@ import { VscAdd } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
 
 function MainPage() {
+   
    const [edit, setEdit] = useState(false);
    return (
       <div>
@@ -15,8 +16,8 @@ function MainPage() {
             <div className="p-2 border-2 rounded-full border-gray-800">
                <VscAdd />
             </div>
-            
-            <Link  className="p-2 border-2 rounded-full border-gray-800">
+
+            <Link to="/Create" className="p-2 border-2 rounded-full border-gray-800">
                <AiOutlineCheck />
             </Link>
          </div>
