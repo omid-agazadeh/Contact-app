@@ -55,7 +55,6 @@ function CreateContact() {
    const submitButton = (e) => {
       e.preventDefault();
       let newState = { ...data };
-
       Object.keys(newState).forEach((key) => {
          if (newState[key].value === '') {
             newState[key].submitStatus = false;
@@ -64,7 +63,7 @@ function CreateContact() {
          }
       });
       setData(newState);
-      if (!hasError) {
+      if (!hasError && !data.name.error && !data.email.error && !data.job.error && !data.phoneNumber.error) {
          setButton(true);
       }
    };
@@ -79,13 +78,13 @@ function CreateContact() {
          };
          const loaclss = JSON.parse(localStorage.getItem('formData'));
          !loaclss ? localStorage.setItem('formData', JSON.stringify([formValue])) : localStorage.setItem('formData', JSON.stringify([...loaclss, formValue]));
-         setButton((e)=>e===false)
+         setButton((e) => e === false);
       }
    };
 
    return (
       <>
-         <Link to="/" className='absolute left-6 top-4 p-4 rounded-full bg-gray-200 w-fit border-2 border-black cursor-pointer hover:bg-slate-400 transition-all duration-200'>
+         <Link to="/" className="absolute left-6 top-4 p-4 rounded-full bg-gray-200 w-fit border-2 border-black cursor-pointer hover:bg-slate-400 transition-all duration-200">
             <ImAddressBook className="w-10 h-10" />
          </Link>
          <div className="flex flex-col gap-y-10 items-center justify-center w-full mt-56">
