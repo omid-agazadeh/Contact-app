@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { VscAdd } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
@@ -11,16 +11,22 @@ function MainPage() {
    const [sellect, setSellect] = useState(false);
    const [selectedItems, setSelectedItems] = useState([]);
    const selectedData = (id, isCheck) => {
-      console.log(id, isCheck);
       setSelectedItems((i) => (isCheck ? [...i, id] : i.filter((prev) => prev !== id)));
-      console.log(id, isCheck);
    };
-   console.log(selectedItems);
-
    const selctedDelete = () => {
       const update = local.filter((data) => !selectedItems.includes(data.id));
       localStorage.setItem('formData', JSON.stringify(update));
       setLocal(JSON.parse(localStorage.getItem('formData')) || []);
+   };
+   const searchHanler = (e) => {
+      const value = e.target.value.trim();
+      const data = JSON.parse(localStorage.getItem('formData')) || [];
+      if (!value) {
+         return setLocal(data);
+      } else {
+         const resualt = data.filter(({ name, email }) => email.includes(value.toLowerCase()) || name.includes(value.toLowerCase()));
+         setLocal(resualt);
+      }
    };
 
    return (
@@ -29,7 +35,7 @@ function MainPage() {
             <label htmlFor="" className="text-lg">
                جستجو در مخاطبین:
             </label>
-            <input type="text" className="w-4/6 p-1 rounded-md focus:outline-none focus:shadow-lg" />
+            <input onChange={searchHanler} type="text" className="w-4/6 p-1 rounded-md focus:outline-none focus:shadow-lg" />
             {!sellect && (
                <div className="p-2 border-2 rounded-full border-gray-800">
                   <VscAdd onClick={() => setSellect(true)} />
@@ -50,16 +56,20 @@ function MainPage() {
                <AiOutlineCheck />
             </Link>
          </div>
-         <div className="px-16 mt-6 bg">
-            {local.length ? (
-               <div className="bg-gray-600 rounded-md">
+         <div className="px-20 mt-6 container ">
+            <div className=" bg-gray-600">
+               <span>name</span>
+               <span>name</span>
+               <span>name</span>
+            </div>
+            {local && (
+               <div className=" bg-gray-600 rounded-b-md border-2 shadow-2xl border-black h-[850px] overflow-auto">
                   {local.map((data) => (
-                     <Users key={data.id} data={data} setLocal={setLocal} sellect={sellect} selectedData={selectedData}  />
+                     <Users key={data.id} data={data} setLocal={setLocal} sellect={sellect} selectedData={selectedData} />
                   ))}
                </div>
-            ) : (
-               <div className="bg-gray-600 p-4 text-center text-white text-2xl rounded-lg">هیچ کاربری در لیست موجود نمیباشد</div>
             )}
+            {!local.length && <div className="bg-gray-600 p-4 text-center text-white text-2xl rounded-lg">هیچ کاربری در لیست موجود نمیباشد</div>}
          </div>
       </div>
    );
