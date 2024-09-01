@@ -28,7 +28,7 @@ function CreateContact() {
       const emailValidate = /^[\w_\.]+@[a-zA-Z]+\.[a-zA-Z]{2,3}$/;
       const phoneNumberValidate = /^(\+98|0|98|0098)?([ ]|-|[()]){0,2}9[0-9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/;
       if (!data.name.trim()) {
-         errors.name = 'pls enter a valid name';
+         errors.name = 'لطفا این قسمت را خالی نگذارید';
       } else if (!nameValidate.test(data.name.trim())) {
          errors.name = 'تعداد کراکتر باید بین 4 و 16 حرف باشد';
       }
@@ -68,49 +68,96 @@ function CreateContact() {
 
    return (
       <>
-      <img src="./img/back" alt="" />
-         <div className={`absolute p-2 text-2xl left-0 right-0 mx-auto transition-all duration-300 ${emailErorr ? 'bg-red-400 top-32' : 'bg-blue-400 -top-32'} w-fit`}>
+         <img src="./images/back.jpg" className="absolute top-0 -z-10 h-screen w-full" alt="" />
+         <div className={`absolute p-2 text-2xl left-0 right-0 mx-auto transition-all duration-300 ${emailErorr ? 'bg-red-400 top-20' : 'bg-blue-400 -top-32'} w-fit`}>
             این ایمیل قبلا استفاده شده است لطفا از ایمیل دیگری استفاده کنید
          </div>
-         <Link to="/" className="absolute left-6 top-4 p-4 rounded-full bg-gray-200 w-fit border-2 border-black cursor-pointer hover:bg-slate-400 transition-all duration-200">
-            <ImAddressBook className="w-10 h-10" />
+         <Link to="/" className="absolute left-6 top-4 p-4 rounded-full w-fit border-2 border-gray-500 cursor-pointer hover:scale-110 transition-all duration-200">
+            <img src="./svg/contact.svg" className="w-10 h-10" alt="" />
          </Link>
+
          <div
-            className={`absolute ${
-               sucess ? 'top-5 right-5' : 'top-5 -right-96'
-            }  flex w-fit px-4 gap-x-2 font-bold text-xl items-center py-5 bg-white rounded-lg shadow-lg border-2 border-green-500 transition-all duration-300`}
+            className={`absolute top-7 transition-all duration-300  ${sucess ? 'right-7' : '-right-[500px]'} bg-teal-100/40 w-fit border-t-4 border-teal-500 rounded-b text-white px-4 py-3 shadow-md`}
+            role="alert"
          >
-            <FiAlertCircle />
-            <span>کاربر مورد نظر با موفقیت ثبت شد</span>
-            <FaCross />
+            <div className="flex items-center gap-x-3">
+               <div className="py-1">
+                  <svg className="fill-current h-10 w-10 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                     <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" />
+                  </svg>
+               </div>
+
+               <p className="text-xl">کاربر با موفقیت ثبت شد</p>
+            </div>
          </div>
+
          {/* ////////////////////// start */}
-         <div className="flex flex-col gap-y-10 items-center justify-center w-full mt-32 text-white">
-            <div className="flex flex-col items-center  gap-y-12 text-2xl py-12 px-12 bg-black/50 shadow-lg rounded-lg ">
+         <form
+            onSubmit={validateHandler}
+            className={`flex flex-col items-center w-fit justify-center mx-auto  shadow-xl backdrop-blur-lg border border-gray-600 rounded-xl ${
+               !Object.keys(error).length === 0 ? 'mt-3' : 'mt-24'
+            }  text-white`}
+         >
+            <div className="flex flex-col items-center  gap-y-12 text-2xl pt-12 pb-5 px-12  rounded-xl ">
                <span className="text-3xl font-MorabbaBald">اضافه کردن مخاطب</span>
-               <div className="flex flex-col gap-y-10">
-                  <div className="flex flex-col gap-y-4">
-                     <input name="name" className="bg-transparent border border-gray-400 h-14 rounded-full w-[460px]" type="text" onChange={inputHanler} />
+               <div className="flex flex-col gap-y-8 text-xl">
+                  <p className="pr-2">لطفا اطلاعات کاربری خود را وارد کنید :</p>
+                  <div className="flex flex-col gap-y-2">
+                     <input
+                        name="name"
+                        className="form-input"
+                        type="text"
+                        placeholder="نام کاربری"
+                        onChange={inputHanler}
+                        autoComplete="off"
+                     />
+                     {error.name && <div className="text-red-600 drop-shadow-2xl w-fit rounded-full">{error.name}</div>}
                   </div>
-                  <div className="flex flex-col gap-y-4">
-                     <input dir="ltr" name="email" className="bg-transparent border border-gray-400 h-14 rounded-full w-[460px]" type="email" onChange={inputHanler} />
+                  <div className="flex flex-col gap-y-2">
+                     <input
+                        dir="ltr"
+                        name="email"
+                        className="form-input"
+                        placeholder="exapmle@gmail.com"
+                        type="email"
+                        onChange={inputHanler}
+                        autoComplete="off"
+                     />
+                     {error.email && <div className="text-red-600 drop-shadow-2xl w-fit rounded-full">{error.email}</div>}
                   </div>{' '}
-                  <div className="flex flex-col gap-y-4">
-                     <input name="job" className="bg-transparent border border-gray-400 h-14 rounded-full w-[460px]" type="text" onChange={inputHanler} />
+                  <div className="flex flex-col gap-y-2">
+                     <input
+                        name="job"
+                        className="form-input"
+                        type="text"
+                        placeholder="شغل (اختیاری)"
+                        onChange={inputHanler}
+                        autoComplete="off"
+                     />
+                     {error.job && <div className="text-red-600 drop-shadow-2xl w-fit rounded-full">{error.job}</div>}
                   </div>{' '}
-                  <div className="flex flex-col gap-y-4">
-                     <input name="phoneNumber" dir="ltr" className="bg-transparent border border-gray-400 h-14 rounded-full w-[460px]" type="text" onChange={inputHanler} />
+                  <div className="flex flex-col gap-y-2">
+                     <input
+                        name="phoneNumber"
+                        className="form-input"
+                        placeholder="شماره موبایل (اختیاری)"
+                        type="text"
+                        onChange={inputHanler}
+                        autoComplete="off"
+                     />
+                     {error.phoneNumber && <div className="text-red-600 drop-shadow-2xl w-fit rounded-full">{error.phoneNumber}</div>}
                   </div>{' '}
                </div>
             </div>
-            <button
-               onClick={validateHandler}
-               type="submit"
-               className="bg-green-400 hover:bg-green-500 hover:scale-110 border-2 border-green-700 transition-all duration-200 font-mono p-4 w-96 text-2xl shadow-xl rounded-md"
-            >
-               افزودن
-            </button>
-         </div>
+            <div className='border-t text-2xl border-gray-600 py-6 w-full flex justify-center items-center'>
+               <button
+                  type="submit"
+                  className="bg-white text-black hover:bg-transparent hover:text-white hover:scale-110 transition-all duration-300 border border-gray-400 h-16 rounded-full w-[430px]"
+               >
+                  افزودن
+               </button>
+            </div>
+         </form>
 
          {/* ///////////// end */}
          {button && (
