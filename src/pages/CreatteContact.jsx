@@ -22,7 +22,7 @@ function CreateContact() {
       const errors = {};
       const nameValidate = /^[a-zA-z\u0600-\u06FF\s\d]{4,16}$/;
       const emailValidate = /^[\w_\.]+@[a-zA-Z]+\.[a-zA-Z]{2,3}$/;
-      const phoneNumberValidate = /^(\+98|0|98|0098)?([ ]|-|[()]){0,2}9[0-9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/;
+      const phoneNumberValidate = /^(\+98|0)?9\d{9}$/;
       if (!data.name.trim()) {
          errors.name = 'لطفا این قسمت را خالی نگذارید';
       } else if (!nameValidate.test(data.name.trim())) {
