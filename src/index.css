@@ -32,9 +32,11 @@
       src: local('Morabba Medium'), /* 600 */ url('/public/fonts/Morabba/woff2/Morabba-Medium.woff2') format('woff2');
       font-display: swap;
    }
+   
 }
 @layer components {
    .form-input {
       @apply h-14 w-[400px] px-8  bg-transparent hover:scale-110 text-lg focus:scale-110 focus:border-white placeholder-gray-100 text-white hover:border-white border-gray-400  focus:outline-none border   rounded-full  transition-all duration-300;
    }
 }
+

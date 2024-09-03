@@ -8,7 +8,7 @@ function Alerts({submitHandler,setButton,button,emailErorr,sucess}) {
             <>
                <div className="absolute inset-0 mx-auto my-auto h-fit w-fit py-10 md:px-56 sm:px-44 px-12 backdrop-blur-md border-2 border-white/20 text-white shadow-xl rounded-md z-20 flex flex-col items-center justify-center gap-y-8">
                   <span className="text-center font-medium text-xl">
-                     شما در حال افزئدن مخاطب جدید هستید. <br />
+                     شما در حال افزودن مخاطب جدید هستید. <br />
                      ایا مطمعن هستید؟
                   </span>
                   <div className="flex justify-center items-center md:gap-x-24 gap-x-3">

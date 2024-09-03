@@ -4,7 +4,17 @@ export default {
    theme: {
       container: {
          center: true,
-         padding:"10rem"
+         padding: '4rem',
+      },
+      screens: {
+         xs: '480px',
+         sm: '640px',
+
+         md: '768px',
+
+         lg: '1024px',
+
+         xl: '1280px',
       },
       extend: {
          fontFamily: {
@@ -17,5 +27,31 @@ export default {
          },
       },
    },
-   plugins: [],
+   plugins: [
+      function ({ addVariant }) {
+         addVariant('child', '&>*');
+         addVariant('child-hover', '&>*:hover');
+      },
+      function ({ addUtilities }) {
+         const newUtilities = {
+            '.scrollbar-thin': {
+               scrollbarWidth: 'thin',
+               scrollbarColor: 'rgb(31 29 29) white',
+            },
+            '.scrollbar-webkit': {
+               '&::-webkit-scrollbar': {
+                  width: '6px',
+               },
+               '&::-webkit-scrollbar-track': {
+                  background: '',
+               },
+               '&::-webkit-scrollbar-thumb': {
+                  backgroundColor: 'rgb(91,21,140)',
+                  borderRadius: '20px',
+               },
+            },
+         };
+         addUtilities(newUtilities, ['responsive', 'hover']);
+      },
+   ],
 };

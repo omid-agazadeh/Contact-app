@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import CreateContactForm from '../components/createContact/CreateContactForm';
-import Alerts from '../components/createContact/Alerts';
+import CreateContactForm from './CreateContactForm';
+import Alerts from './Alerts';
 
-
-function CreateContact() {
+function MainCreateContact() {
    const localPrv = JSON.parse(localStorage.getItem('formData')) || [];
    const [data, setData] = useState({
       name: '',
@@ -16,7 +15,7 @@ function CreateContact() {
    const [button, setButton] = useState(false);
    const [sucess, setSucess] = useState(false);
    const idMaker = () => Math.ceil(Math.pow(Math.random() * 35634, 3));
-   
+
    const validateHandler = (e) => {
       e.preventDefault();
       const errors = {};
@@ -60,14 +59,12 @@ function CreateContact() {
    return (
       <>
          <img src="./images/back.jpg" className="absolute top-0 -z-10 h-screen object-none w-full  overflow-x-hidden" alt="Bacgkground image" />
-         
-
          <form onSubmit={validateHandler}>
-           <CreateContactForm setData={setData} data={data}  error={error} />
-           <Alerts submitHandler={submitHandler} sucess={sucess} setButton={setButton} button={button} emailErorr={emailErorr} />
+            <CreateContactForm setData={setData} data={data} error={error} />
+            <Alerts submitHandler={submitHandler} sucess={sucess} setButton={setButton} button={button} emailErorr={emailErorr} />
          </form>
       </>
    );
 }
 
-export default CreateContact;
+export default MainCreateContact;
