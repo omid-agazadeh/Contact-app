@@ -12,7 +12,7 @@ function SelectAll({ setSelectedItems, local, selectedItems }) {
    };
    return (
       <div className="flex items-center justify-center ">
-         <input onClick={checkAllHandler} checked={!selectedItems.length ? false : true} readOnly className="col-span-1 accent-fuchsia-700 w-5 h-5" type="checkbox" />
+         <input onClick={checkAllHandler} checked={!selectedItems.length ? false : true} readOnly className="col-span-1 accent-fuchsia-700 md:w-5 w-4 md:h-5 h-4" type="checkbox" />
       </div>
    );
 }

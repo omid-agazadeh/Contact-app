@@ -12,10 +12,10 @@ function Search({ setLocal, selectedItems }) {
    };
    return (
       <>
-         <label htmlFor="" className="text-lg">
+         <label htmlFor="" className="text-lg md:block hidden">
             جستجو در مخاطبین:
          </label>
-         <div className={`${selectedItems.length !== 0 ? 'w-9/12' : 'w-10/12'}  relative`}>
+         <div className={`${selectedItems.length !== 0 ? 'lg:w-8/12 md:w-7/12 w-full' : 'lg:w-10/12 md:w-9/12 w-full'}  relative`}>
             <input
                onChange={searchHanler}
                placeholder="جستجو"

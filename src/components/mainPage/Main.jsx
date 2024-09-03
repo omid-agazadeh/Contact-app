@@ -15,18 +15,18 @@ function Main() {
    };
    return (
       <>
-         <div className="xl:container mt-10">
+         <div className="xl:container mt-20">
             <Header />
-            <div className="flex items-center justify-between mt-16">
+            <div className="flex md:flex-row flex-col gap-y-4 items-center md:justify-between mt-16 px-2">
                <Search setLocal={setLocal} selectedItems={selectedItems} />
                {selectedItems.length !== 0 && <SelctedDelete selectedItems={selectedItems} setLocal={setLocal} local={local} />}
             </div>
-            <div className=" mt-6">
-               <div className="grid grid-cols-8 text-center bg-gray-200 text-xl border-x border-t border-gray-400 py-3 rounded-t-lg">
-                  <span className="col-span-2">اقدام</span>
-                  <span className="col-span-2">شماره موبایل</span>
-                  <span className="col-span-2 text-end">ایمیل</span>
-                  <span className="col-span-1 text-end pr-5">اسم</span>
+            <div className=" mt-6 px-2">
+               <div className="grid md:grid-cols-8 grid-cols-12  text-center bg-gray-200 md:text-xl border-x border-t border-gray-400 py-3 rounded-t-lg">
+                  <span className="md:col-span-2 col-span-2">اقدام</span>
+                  <span className="md:col-span-2 hidden md:block ">شماره موبایل</span>
+                  <span className="md:col-span-2 col-span-5 text-center md:text-end">ایمیل</span>
+                  <span className="md:col-span-1 col-span-4 md:text-end text-center pr-5">اسم</span>
                   <SelectAll setSelectedItems={setSelectedItems} local={local} selectedItems={selectedItems} />
                </div>
                {local && (

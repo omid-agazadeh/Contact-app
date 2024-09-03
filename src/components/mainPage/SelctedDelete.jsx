@@ -14,7 +14,7 @@ function SelctedDelete({ selectedItems, setLocal, local }) {
    return (
       <>
          {selectModule && <SelectModule selctedDelete={selctedDelete} setSelecttModule={setSelecttModule} />}
-         <div onClick={() => setSelecttModule(true)} className="py-2 px-4  rounded-full  bg-red-500 hover:scale-110 text-white transition-all duration-200 cursor-pointer">
+         <div onClick={() => setSelecttModule(true)} className="py-2 px-4 w-full md:w-auto text-center md:text-base text-xl  rounded-full  bg-red-500 hover:scale-110 text-white transition-all duration-200 cursor-pointer">
             پاک کردن همه
          </div>
       </>

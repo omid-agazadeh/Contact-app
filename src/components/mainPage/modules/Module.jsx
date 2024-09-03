@@ -1,4 +1,12 @@
-function Module({ setmodule, deleteHandler }) {
+import { useState } from 'react';
+
+function Module({ setmodule, data, setLocal}) {
+   const deleteHandler = () => {
+      const local = JSON.parse(localStorage.getItem('formData'));
+      localStorage.setItem('formData', JSON.stringify(local.filter((e) => e.id !== data.id)))
+      setLocal(JSON.parse(localStorage.getItem('formData')) || []);
+   };
+
    return (
       <div className="absolute inset-0 mx-auto my-auto h-fit w-fit py-10 md:px-56 sm:px-44 px-12 backdrop-blur-md border-2 border-white/20 text-black shadow-xl rounded-md z-20 flex flex-col items-center justify-center gap-y-8">
          <span className="text-center font-medium text-xl">
