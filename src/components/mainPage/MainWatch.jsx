@@ -7,12 +7,14 @@ import Header from './Header';
 import SelectAll from './SelectAll';
 import SelctedDelete from './SelctedDelete';
 
-function Main() {
+function MainWatch() {
    const [local, setLocal] = useState(JSON.parse(localStorage.getItem('formData')) || []);
    const [selectedItems, setSelectedItems] = useState([]);
    const selectedData = (id, isCheck) => {
       setSelectedItems((i) => (isCheck ? [...i, id] : i.filter((prev) => prev !== id)));
    };
+   console.log(local);
+   
    return (
       <>
          <div className="xl:container mt-20">
@@ -43,4 +45,4 @@ function Main() {
    );
 }
 
-export default Main;
+export default MainWatch;

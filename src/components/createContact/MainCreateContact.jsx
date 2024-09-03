@@ -1,43 +1,25 @@
 import { useState } from 'react';
 import CreateContactForm from './CreateContactForm';
 import Alerts from './Alerts';
+import { createInputValidate } from '../../helper/helper';
 
 function MainCreateContact() {
    const localPrv = JSON.parse(localStorage.getItem('formData')) || [];
+   const [error, setError] = useState({});
+   const [emailErorr, setEmailErorr] = useState(false);
    const [data, setData] = useState({
       name: '',
       email: '',
       job: '',
       phoneNumber: '',
    });
-   const [error, setError] = useState({});
-   const [emailErorr, setEmailErorr] = useState(false);
    const [button, setButton] = useState(false);
    const [sucess, setSucess] = useState(false);
    const idMaker = () => Math.ceil(Math.pow(Math.random() * 35634, 3));
 
    const validateHandler = (e) => {
       e.preventDefault();
-      const errors = {};
-      const nameValidate = /^[a-zA-z\u0600-\u06FF\s\d]{4,16}$/;
-      const emailValidate = /^[\w_\.]+@[a-zA-Z]+\.[a-zA-Z]{2,3}$/;
-      const phoneNumberValidate = /^(\+98|0)?9\d{9}$/;
-      if (!data.name.trim()) {
-         errors.name = 'لطفا این قسمت را خالی نگذارید';
-      } else if (!nameValidate.test(data.name.trim())) {
-         errors.name = 'تعداد کراکتر باید بین 4 و 16 حرف باشد';
-      }
-      if (!data.email.trim()) {
-         errors.email = 'این فیلد نباید خالی باشه';
-      } else if (!emailValidate.test(data.email.trim())) {
-         errors.email = 'این ایمیل نادرست است';
-      }
-      if (data.job.trim() && !nameValidate.test(data.job.trim())) {
-         errors.job = 'تعداد کراکترهای این فیلد باید بین 4 و 16 عدد باشده';
-      }
-      if (data.phoneNumber.trim() && !phoneNumberValidate.test(data.phoneNumber.trim())) {
-         errors.phoneNumber = 'شماره موبایل وارد شده صحیح نمی باشد';
-      }
+      const errors = createInputValidate(data);
       setError(errors);
       if (!localPrv.find((e) => e.email === data.email)) {
          if (Object.keys(errors).length === 0) {
