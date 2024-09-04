@@ -40,7 +40,7 @@ function MainCreateContact() {
 
    return (
       <>
-         <img src="./images/back.jpg" className="absolute top-0 -z-10 h-screen object-none w-full  overflow-x-hidden" alt="Bacgkground image" />
+         <img src="./images/back.jpg" className="absolute top-0 -z-10 h-screen object-none  w-full  overflow-x-hidden" alt="Bacgkground image" />
          <form onSubmit={validateHandler}>
             <CreateContactForm setData={setData} data={data} error={error} />
             <Alerts submitHandler={submitHandler} sucess={sucess} setButton={setButton} button={button} emailErorr={emailErorr} />

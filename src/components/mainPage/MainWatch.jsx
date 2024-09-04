@@ -14,9 +14,10 @@ function MainWatch() {
       setSelectedItems((i) => (isCheck ? [...i, id] : i.filter((prev) => prev !== id)));
    };
    console.log(local);
-   
+
    return (
       <>
+         <img src="/images/11.jpg" className="absolute top-0 -z-10 h-screen object-none w-full rotate-180  overflow-x-hidden" alt="Bacgkground image" />
          <div className="xl:container mt-20">
             <Header />
             <div className="flex md:flex-row flex-col gap-y-4 items-center md:justify-between mt-16 px-2">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Alerts({submitHandler,setButton,button,emailErorr,sucess}) {
+function Alerts({ submitHandler, setButton, button, emailErorr, sucess }) {
    return (
       <>
          {button && (
@@ -33,8 +33,12 @@ function Alerts({submitHandler,setButton,button,emailErorr,sucess}) {
          >
             این ایمیل قبلا استفاده شده است لطفا از ایمیل دیگری استفاده کنید
          </div>
-         <Link to="/" className="absolute md:left-6 left-3 top-2 md:top-4 md:p-4 p-2 rounded-full w-fit border-2 border-gray-500 cursor-pointer hover:scale-110 transition-all duration-200">
-            <img src="./svg/contact.svg" className="md:w-10 w-8 md:h-10 h-8" alt="" />
+         <Link
+            to="/"
+            className="absolute md:left-6 left-3 text-white top-2 md:top-4 md:p-4 p-2 hover:backdrop-blur-md rounded-full w-fit border-2 border-gray-500 cursor-pointer hover:scale-110 transition-all duration-200"
+         >
+            بازگست به لیست مخاطبین
+            {/* <img src="./svg/contact.svg" className="md:w-10 w-8 md:h-10 h-8" alt="" /> */}
          </Link>
          <div
             className={`absolute md:top-7 top-3 transition-all duration-300  ${
